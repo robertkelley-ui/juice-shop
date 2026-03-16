@@ -89,9 +89,10 @@ resource "aws_s3_bucket" "my-new-undeployed-bucket" {
 resource "aws_s3_bucket_public_access_block" "snyk_public" {
   bucket = aws_s3_bucket.my-new-undeployed-bucket.id
 
-  block_public_acls   = false
+  block_public_acls   = true
   ignore_public_acls = false
   block_public_policy = false
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_public_access_block" "snyk_private" {
@@ -100,4 +101,5 @@ resource "aws_s3_bucket_public_access_block" "snyk_private" {
   ignore_public_acls  = true
   block_public_acls   = true
   block_public_policy = true
+  restrict_public_buckets = true
 }
